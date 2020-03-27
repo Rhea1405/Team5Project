@@ -1,0 +1,45 @@
+﻿@model Team5Project.Models.Branch_Admin
+@{
+    ViewBag.Title = "BranchAdmin";
+}
+
+<h2>BranchAdmin</h2>
+@using (Html.BeginForm("AddBranchAdmin", "Login"))
+
+
+
+{
+    <table>
+        <tr>
+            <td>Branch ID</td>
+            <td>@Html.TextBoxFor(a =>a.Branch_id)</td>
+        </tr>
+        <tr>
+            <td>Branch Location</td>
+            <td>@Html.TextBoxFor(a => a.Branch_Location)</td>
+
+        </tr>
+        <tr>
+            <td>Address</td>
+            <td>@Html.TextBoxFor(a => a.Address)</td>
+        </tr>
+        <tr>
+            <td>Mail ID</td>
+            <td>@Html.TextBoxFor(a => a.Mail_id)</td>
+        </tr>
+        <tr>
+            <td>Phone</td>
+            <td>@Html.TextBoxFor(a => a.Phone)</td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Register" /></td>
+        </tr>
+    </table>
+    if (ViewBag.msg != null)
+    {
+        <h2>@ViewBag.msg</h2>
+    }
+
+
+}
+

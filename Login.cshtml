@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+<h3>Welcome to Online Vehicle Registration</h3>
+
+@using(Html.BeginForm())
+{
+    <table>
+        <tr>
+            <td>Username</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Already registered user?</td>
+            <td><input type="submit" value="login" /></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="NEW CUSTOMER" onclick="@("window.location.href='" + @Url.Action("Customer", "Login") + "'");" /></td>
+            <td><input type="button" value="NEW BRANCH ADMIN" onclick="@("window.location.href='" + @Url.Action("BranchAdmin", "Login") + "'");" /></td>
+        </tr>
+
+    </table>
+
+
+}
+
+

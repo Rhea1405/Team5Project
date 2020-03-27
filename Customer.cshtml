@@ -1,0 +1,58 @@
+﻿@model  Team5Project.Models.Customer_Profile
+@{
+    ViewBag.Title = "Customer";
+}
+
+<h2>Customer</h2>
+@using (Html.BeginForm("AddCustomer", "Login"))
+{
+    <table>
+        <tr>
+            <td>Customer ID</td>
+            <td>@Html.TextBoxFor(a =>a.Customer_id)</td>
+            
+        </tr>
+        <tr>
+            <td>Customer Name</td>
+            <td>
+                @Html.TextBoxFor(a =>a.Customer_name)
+        </td>
+        
+    </tr>
+    <tr>
+        <td>Date of Birth</td>
+        <td>@Html.TextBoxFor(a => a.Date_of_Birth)</td>
+       
+    </tr>
+    <tr>
+        <td>Address</td>
+        <td>@Html.TextAreaFor(a => a.Address)</td>
+       
+    </tr>
+    <tr>
+        <td>Mail ID</td>
+        <td>@Html.TextBoxFor(a => a.Mail_id)</td>
+       
+    </tr>
+    <tr>
+        <td>Phone</td>
+        <td>@Html.TextBoxFor(a =>a.Phone)</td>
+       
+    </tr>
+    <tr>
+        <td>Occupation</td>
+        <td>@Html.TextBoxFor(a => a.Occupation)</td>
+        
+    </tr>
+    <tr>
+        <td><input type="submit" value="Register" /></td>
+    </tr>
+   
+</table>
+if (ViewBag.msg != null)
+{
+    <h2>@ViewBag.msg</h2>
+}
+}
+
+
