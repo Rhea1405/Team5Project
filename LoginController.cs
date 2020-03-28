@@ -4,9 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Team5Project.Models;
+using static Team5Project.Models.DBOperations;
 
 namespace Team5Project.Controllers
 {
+    
     public class LoginController : Controller
     {
         // GET: Login
@@ -16,7 +18,7 @@ namespace Team5Project.Controllers
         {
             return View();
         }
-        public ActionResult AdminLogin(string username,string password)
+        public ActionResult AdminLogin(string username, string password)
         {
             User_Registration l = DBOperations.CheckRegistration(username, password);
             if (l != null)
@@ -26,11 +28,11 @@ namespace Team5Project.Controllers
                 {
                     return RedirectToAction("SuccessfulAdmin");
                 }
-                else if(l.Role_Type=="Customer" && l.Status=="Approved")
+                else if (l.Role_Type == "Customer" && l.Status == "Approved")
                 {
                     return RedirectToAction("SuccessfulCustomer");
                 }
-                else if(l.Role_Type=="ba" && l.Status=="Approved")
+                else if (l.Role_Type == "ba" && l.Status == "Approved")
                 {
                     return RedirectToAction("SuccessfulBA");
                 }
@@ -38,7 +40,7 @@ namespace Team5Project.Controllers
                 {
                     return View("WrongLogin");
                 }
-               
+
             }
             else
             {
@@ -48,15 +50,53 @@ namespace Team5Project.Controllers
         }
         public ActionResult SuccessfulAdmin()
         {
-            clist = DBOperations.GetAll();
-            ViewBag.clist = clist;
-
-            blist = DBOperations.GetallB();
-            ViewBag.blist = blist;
-            return View();
+            ViewModel mymodel = new ViewModel();
+            mymodel.CustomerProfile = DBOperations.GetAll();
+            mymodel.BranchAdmin = DBOperations.GetallB();
+            return View(mymodel);
 
         }
-        
+        public ActionResult SuccessfulAdminInsert(ViewModel V)
+        {
+            var cid = Request.Form.Get("chckbox");
+            var bid = Request.Form.Get("chckbox1");
+            var status= Request.Form.GetValues("Status");
+            List<User_Registration> ulist = new List<User_Registration>();
+            User_Registration U = null;
+            clist = DBOperations.GetAll();
+            blist = DBOperations.GetallB();
+                foreach (var c in clist)
+                {
+                    if (cid.Contains(c.Customer_id.ToString()))
+                    {
+                        U = new User_Registration();
+                        U.Username = c.Customer_id;
+                        U.Password = c.Password;
+                        U.Role_Type = c.Role_Type;
+                        U.Status = c.Status;
+                         U.Create_date = DateTime.Today;
+                        ulist.Add(U);
+                    }
+                }
+               
+            foreach (var b in blist)
+            {
+                if (bid.Contains(b.Branch_id.ToString()))
+                {
+                    U = new User_Registration();
+                    U.Username = b.Branch_id;
+                    U.Password = b.Password;
+                    U.Status = b.Status;
+                    U.Role_Type = b.Role_Type;
+                    U.Create_date = DateTime.Today;
+                    ulist.Add(U);
+                }
+            }
+            string mesg = DBOperations.UserRegistration(ulist);
+            ViewBag.message = mesg;
+            return View("SuccessfulAdmin",V);
+        }
+
         public ActionResult WrongLogin()
         {
 

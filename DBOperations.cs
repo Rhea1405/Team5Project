@@ -5,11 +5,12 @@ using System.Web;
 
 namespace Team5Project.Models
 {
+    
     public class DBOperations
     {
 
 
-        static OnlineVehicleBookingEntities1 v = new OnlineVehicleBookingEntities1();
+        static Team5ProjectEntities v = new Team5ProjectEntities();
 
         public static string InsertCustomer(Customer_Profile c)
         {
@@ -26,9 +27,9 @@ namespace Team5Project.Models
 
             return "Thank you for registering with us!You can login after your approval.";
         }
-        public static User_Registration CheckRegistration(string username,string password)
+        public static User_Registration CheckRegistration(string username, string password)
         {
-            
+
             User_Registration u = new User_Registration();
             var l = from v in v.User_Registration
                     where v.Username == username && v.Password == password
@@ -52,6 +53,22 @@ namespace Team5Project.Models
                     select bl;
 
             return b.ToList();
+        }
+        public static string UserRegistration(List<User_Registration> U)
+        {
+            if (U != null)
+            {
+                foreach (var row in U)
+                {
+                    if (row.Status != "Rejected" && row.Status != "Pending")
+                        v.User_Registration.Add(row);
+                }
+                v.SaveChanges();
+                return "Submitted Successfully";
+            }
+            else
+                return "Unsucessful";
+           
         }
     }
 }
