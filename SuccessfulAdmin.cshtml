@@ -1,5 +1,4 @@
-﻿
-    @model Team5Project.Models.Branch_Admin
+﻿@model Team5Project.Models.Branch_Admin
 @{
     ViewBag.Title = "SuccessfulAdmin";
 }
@@ -8,72 +7,73 @@
 
 <h3>Welcome @Session["username"]</h3>
 
-@using(Html.BeginForm())
+@using (Html.BeginForm("SuccessfulAdminInsert", "Login"))
 {
-<table border="1">
-    <tr>
-        <td>CUSTOMERID</td>
-        <td>CUSTOMER NAME</td>
-        <td>DOB</td>
-        <td>ADDRESS</td>
-        <td>MAILID</td>
-        <td>PHONE</td>
-        <td>OCCUPATION</td>
-        <td>STATUS</td>
-    </tr>
-    @foreach(var i in ViewBag.clist as IList<Team5Project.Models.Customer_Profile>)
-    {
-
+    <table border="1">
         <tr>
-            <td>@i.Customer_id</td>
-            <td>@i.Customer_name</td>
-            <td>@i.Date_of_Birth</td>
-            <td>@i.Address</td>
-            <td>@i.Mail_id</td>
-            <td>@i.Phone</td>
-            <td>@i.Occupation</td>
-            <td>@i.Status</td>
-            <td>@Html.CheckBox("chckbox",new { @value = i.Customer_id })</td>
+            <td>CUSTOMERID</td>
+            <td>CUSTOMER NAME</td>
+            <td>DOB</td>
+            <td>ADDRESS</td>
+            <td>MAILID</td>
+            <td>PHONE</td>
+            <td>OCCUPATION</td>
+            <td>STATUS</td>
+        </tr>
+        @foreach (var i in ViewBag.clist as IList<Team5Project.Models.Customer_Profile>)
+        {
+
+            <tr>
+                <td>@i.Customer_id</td>
+                <td>@i.Customer_name</td>
+                <td>@i.Date_of_Birth</td>
+                <td>@i.Address</td>
+                <td>@i.Mail_id</td>
+                <td>@i.Phone</td>
+                <td>@i.Occupation</td>
+                <td>@i.Status</td>
+                <td>@Html.CheckBox("chckbox", new { @value = i.Customer_id })</td>
+
+
+            </tr>
+        }
+
+
+    </table>
+
+    <table border="1">
+        <tr>
+            <td>BRANCH ID</td>
+            <td>BRANCH LOCATION</td>
+            <td>ADDRESS</td>
+            <td>MAIL ID</td>
+            <td>PHONE</td>
+            <td>STATUS</td>
 
 
         </tr>
-    }
+        @foreach (var i in ViewBag.blist as IList<Team5Project.Models.Branch_Admin>)
+        {
 
+            <tr>
+                <td>@i.Branch_id</td>
+                <td>@i.Branch_Location</td>
+                <td>@i.Address</td>
+                <td>@i.Mail_id</td>
+                <td>@i.Phone</td>
+                <td>@i.Status</td>
+                <td>@Html.CheckBox("chckbox1", new { @value = i.Branch_id })</td>
 
-</table>
+            </tr>
 
-<table border="1">
-    <tr>
-        <td>BRANCH ID</td>
-        <td>BRANCH LOCATION</td>
-        <td>ADDRESS</td>
-        <td>MAIL ID</td>
-        <td>PHONE</td>
-        <td>STATUS</td>
-
-
-    </tr>
-    @foreach(var i in ViewBag.blist as IList<Team5Project.Models.Branch_Admin>)
-    {
-
-        <tr>
-            <td>@i.Branch_id</td>
-            <td>@i.Branch_Location</td>
-            <td>@i.Address</td>
-            <td>@i.Mail_id</td>
-            <td>@i.Phone</td>
-            <td>@i.Status</td>
-            <td>@Html.CheckBox("chckbox",new { @value = i.Branch_id })</td>
-
-        </tr>
-
-    }
+        }
 
 
 
 
 
-</table>
+    </table>
+    <input id="Submit1" type="submit" value="submit" />
 
 
 

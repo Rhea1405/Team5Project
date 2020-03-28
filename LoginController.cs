@@ -50,17 +50,20 @@ namespace Team5Project.Controllers
         }
         public ActionResult SuccessfulAdmin()
         {
-            ViewModel mymodel = new ViewModel();
-            mymodel.CustomerProfile = DBOperations.GetAll();
-            mymodel.BranchAdmin = DBOperations.GetallB();
-            return View(mymodel);
+            clist = DBOperations.GetAll();
+            ViewBag.clist = clist;
+
+            blist = DBOperations.GetallB();
+            ViewBag.blist = blist;
+
+            return View();
 
         }
-        public ActionResult SuccessfulAdminInsert(ViewModel V)
+        public ActionResult SuccessfulAdminInsert()
         {
             var cid = Request.Form.Get("chckbox");
             var bid = Request.Form.Get("chckbox1");
-            var status= Request.Form.GetValues("Status");
+            //var status= Request.Form.GetValues("Status");
             List<User_Registration> ulist = new List<User_Registration>();
             User_Registration U = null;
             clist = DBOperations.GetAll();
@@ -73,7 +76,7 @@ namespace Team5Project.Controllers
                         U.Username = c.Customer_id;
                         U.Password = c.Password;
                         U.Role_Type = c.Role_Type;
-                        U.Status = c.Status;
+                        U.Status = "Approved";
                          U.Create_date = DateTime.Today;
                         ulist.Add(U);
                     }
@@ -86,7 +89,7 @@ namespace Team5Project.Controllers
                     U = new User_Registration();
                     U.Username = b.Branch_id;
                     U.Password = b.Password;
-                    U.Status = b.Status;
+                    U.Status = "Approved";
                     U.Role_Type = b.Role_Type;
                     U.Create_date = DateTime.Today;
                     ulist.Add(U);
@@ -94,7 +97,7 @@ namespace Team5Project.Controllers
             }
             string mesg = DBOperations.UserRegistration(ulist);
             ViewBag.message = mesg;
-            return View("SuccessfulAdmin",V);
+            return View();
         }
 
         public ActionResult WrongLogin()
@@ -116,8 +119,6 @@ namespace Team5Project.Controllers
 
 
             return View("Customer");
-
-
 
 
         }
