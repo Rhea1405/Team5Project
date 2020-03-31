@@ -70,5 +70,60 @@ namespace Team5Project.Models
                 return "Unsucessful";
 
         }
+         public static List<VehicleSearch> Search(int min, int max)
+        {
+            var list = from l in v.VehicleSearches
+                       where l.PriceRange >= min && l.PriceRange <= max
+                       select l;
+            return list.ToList();
+        }
+        public static List<VehicleSearch> Searchsc(int scapacity)
+        {
+            var list = from l in v.VehicleSearches
+                       where l.Seating_Capacity == scapacity 
+                       select l;
+            return list.ToList();
+        }
+        public static List<VehicleSearch> VW_Search()
+        {
+            var list = from l in v.VehicleSearches
+                       select l;
+            return list.ToList();
+        }
+        public static List<VehicleSearch> VW_Searchloc(string loc)
+        {
+            var list = from l in v.VehicleSearches
+                       where l.Branch_Location == loc
+                       select l;
+            return list.ToList();
+        }
+        public static List<VehicleSearch> VW_Searchname(string name)
+        {
+            var list = from l in v.VehicleSearches
+                       where l.Manufactures_name == name 
+                       select l;
+            return list.ToList();
+        }
+        public static List<VehicleSearch> VW_Searchcolor(string col)
+        {
+            var list = from l in v.VehicleSearches
+                       where l.Color == col 
+                       select l;
+            return list.ToList();
+        }
+        public static List<VehicleSearch> VW_Searchvcode(string vcode)
+        {
+            var list = from l in v.VehicleSearches
+                       where l.Vehicle_Code == vcode
+                       select l;
+            return list.ToList();
+        }
+        public static List<VehicleSearch> getvehiclelist(string[] id)
+        {
+            var e = from l in v.VehicleSearches
+                    where id.Contains(l.Vehicle_Code) == true
+                    select l;
+            return e.ToList();
+        }
     }
 }
