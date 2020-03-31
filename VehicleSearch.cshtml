@@ -1,7 +1,41 @@
-﻿
+@model Team5Project.Models.VehicleSearch
 @{
     ViewBag.Title = "VehicleSearch";
+    Layout = "~/Views/Shared/_CustomerLayoutPage.cshtml";
 }
 
 <h2>VehicleSearch</h2>
-
+@using (Html.BeginForm("GetPriceRange", "Login"))
+{
+    <table>
+        <tr>
+            <td>Manufacturer Name</td>
+            <td>@Html.TextBox("Manufactures_name", Request["Manufactures_name"])</td>
+        </tr>
+        <tr>
+            <td>Vehicle Code</td>
+            <td>@Html.TextBox("Vehicle_Code", Request["Vehicle_Code"])</td>
+        </tr>
+        <tr>
+            <td>Branch Location</td>
+            <td>@Html.TextBox("Branch_Location", Request["Branch_Location"])</td>
+        </tr>
+        <tr>
+            <td>Price Range</td>
+            <td>@Html.TextBox("MinPrice", Request["MinPrice"])</td>
+            <td>@Html.TextBox("MaxPrice", Request["MaxPrice"])</td>
+        </tr>
+        <tr>
+            <td>Colour</td>
+            <td>@Html.TextBox("Color", Request["Color"])</td>
+        </tr>
+        <tr>
+            <td>Seating Capacity</td>
+            <td>@Html.TextBox("Seating_Capacity", Request["Seating_Capacity"])</td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Search" /></td>
+        </tr>
+    </table>
+    <td><input type="button" value="BACK" onclick="@("window.location.href='" + @Url.Action("Customer", "Login") + "'");" /></td>
+}
