@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewBag.Title = "GetPriceRange";
+}
+
+<h2>GetPriceRange</h2>
+@using (Html.BeginForm("VehicleBooking","Login"))
+{
+    if (ViewBag.L != null)
+    {
+        <table border="1">
+            <tr>
+                <td>Select</td>
+                <td>Manufacturer Name</td>
+                <td>Vehicle Code</td>
+                <td>Branch Location</td>
+                <td>Price Range</td>
+                <td>Colour</td>
+                <td>Seating Capacity</td>
+            </tr>
+            @foreach (var v in ViewBag.L as IList<Team5Project.Models.VehicleSearch>)
+            {
+                <tr>
+                    <td>@Html.CheckBox("chk", new { @value = v.Vehicle_Code })</td>
+                    <td>@v.Manufactures_name</td>
+                    <td>@v.Vehicle_Code</td>
+                    <td>@v.Branch_Location</td>
+                    <td>@v.PriceRange</td>
+                    <td>@v.Color</td>
+                    <td>@v.Seating_Capacity</td>
+                </tr>
+            }
+        </table>
+        <input type="submit" value="Book for a Vehicle"/>
+    } 
+        <h3>@ViewBag.msg</h3>
+}
