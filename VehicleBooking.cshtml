@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Team5Project.Models.VehicleSearch>
+@{
+    ViewBag.Title = "VehicleBooking";
+}
+
+<h2>VehicleBooking</h2>
+@using (Html.BeginForm())
+{
+if (Model != null)
+{
+    <table border="1">
+        <tr>
+            <td>Manufacturer Name</td>
+            <td>Vehicle Code</td>
+            <td>Branch Location</td>
+            <td>Price Range</td>
+            <td>Colour</td>
+            <td>Seating Capacity</td>
+        </tr>
+        @foreach (var v in Model)
+        {
+            <tr>
+                <td>@v.Manufactures_name</td>
+                <td>@v.Vehicle_Code</td>
+                <td>@v.Branch_Location</td>
+                <td>@v.PriceRange</td>
+                <td>@v.Color</td>
+                <td>@v.Seating_Capacity</td>
+            </tr>
+        }
+    </table>
+    <input type="submit" value="Confirm" />
+}
+}
