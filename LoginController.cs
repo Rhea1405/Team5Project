@@ -140,9 +140,55 @@ namespace Team5Project.Controllers
             ViewBag.msg = DBOperations.InsertBranchAdmin(b);
             return View("BranchAdmin");
         }
-        public ActionResult VehicleSearch()
+          public ActionResult VehicleSearch()
         {
+            vd = DBOperations.VW_Search();
+            ViewBag.l = vd;
             return View();
+        }
+        public ActionResult GetPriceRange()
+        {
+            vd = DBOperations.VW_Search();
+            ViewBag.l = vd;
+            if (Request.Form["Manufactures_name"].ToString().Length != 0)
+            {
+                string mname = Request.Form["Manufactures_name"];
+                ViewBag.L = DBOperations.VW_Searchname(mname);
+            }
+            if (Request.Form["Vehicle_Code"].ToString().Length != 0)
+            {
+                string vcode = Request.Form["Vehicle_Code"];
+                ViewBag.L = DBOperations.VW_Searchvcode(vcode);
+            }
+            if (Request.Form["Branch_Location"].ToString().Length != 0)
+            {
+                string bl = Request.Form["Branch_Location"];
+                ViewBag.L = DBOperations.VW_Searchloc(bl);
+            }
+            int num1 = 0, num2 = 0;
+            if (int.TryParse(Request.Form["MinPrice"], out num1) && int.TryParse(Request.Form["MaxPrice"], out num2))
+            {
+                int min = int.Parse(Request.Form["MinPrice"]);
+                int max = int.Parse(Request.Form["MaxPrice"]);
+                ViewBag.L = DBOperations.Search(min, max);
+            }
+            if (Request.Form["Color"].ToString().Length != 0)
+            {
+                string color = Request.Form["Color"];
+                ViewBag.L = DBOperations.VW_Searchcolor(color);
+            }
+            int num = 0;
+            if (int.TryParse(Request.Form["Seating_Capacity"], out num))
+            {
+                int sc = int.Parse(Request.Form["Seating_Capacity"]);
+                ViewBag.L = DBOperations.Searchsc(sc);
+            }
+           ViewBag.msg = "Contact System Administrator for further assistance";   
+            return View();
+        }
+        public ActionResult VehicleBooking(string[] chk)
+        {          
+            return View(DBOperations.getvehiclelist(chk));
         }
 
 
