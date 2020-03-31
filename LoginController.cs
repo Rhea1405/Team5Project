@@ -14,6 +14,7 @@ namespace Team5Project.Controllers
         // GET: Login
         List<Branch_Admin> blist = null;
         List<Customer_Profile> clist = null;
+        static List<VehicleSearch> vd = null;
         public ActionResult Login()
         {
             return View();
