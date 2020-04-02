@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "SuccessfulBA";
+}
+
+<h2>SuccessfulBA</h2>
+
+<h3>Welcome @Session["username"]</h3>
+
+Approve vehicle requests here!!
+
+@using (Html.BeginForm("SuccessfulBA", "Login", FormMethod.Post))
+{
+
+    <table>
+        <tr>
+            <td><input type="submit" value="APPROVE" name="submit" /></td>
+            <td><input type="submit" value="REQUEST" name="submit" /></td>
+        </tr>
+        <tr>
+            <td>@Html.ActionLink("Homepage", "Login", "Login")</td>
+        </tr>
+    </table>
+
+
+
+}
+
+

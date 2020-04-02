@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "ShowToBA";
+}
+
+@using (Html.BeginForm("BAApprove", "Login"))
+{
+    <table border="1">
+        <tr>
+            <td>BOOKING ID</td>
+            <td>VEHICLE_ID</td>
+            <td>BRANCH_LOCATION</td>
+            <td>STATUS</td>
+            <td>CUSTOMER ID</td>
+            <td>SELECT</td>
+        </tr>
+        @foreach (var i in ViewBag.L as IList<Team5Project.Models.Customer_Vehicle_Booking1>)
+        {
+
+            <tr>
+                <td>@i.Booking_id</td>
+                <td>@i.Vehicle_id</td>
+                <td>@i.Branch_Location</td>
+                <td>@i.Status</td>
+                <td>@i.Customer_id</td>
+                <td>@Html.CheckBox("chckboxBA", new { @value = i.Booking_id })</td>
+            </tr>
+
+
+
+
+        }
+        <tr>
+            <td><input type="submit" value="APPROVE" /></td>
+        </tr>
+
+
+
+    </table>
+
+
+
+
+}
+
+
+

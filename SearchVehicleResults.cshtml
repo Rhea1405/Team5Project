@@ -1,16 +1,18 @@
-﻿@model IEnumerable<Team5Project.Models.VehicleSearch>
+﻿
 @{
-    ViewBag.Title = "VehicleBooking";
+    ViewBag.Title = "SearchVehicleResults";
 }
 
-<h2>VehicleBooking</h2>
-
-@using (Html.BeginForm("GoToBA", "Login"))
+<h2>SearchVehicleResults</h2>
+@using (Html.BeginForm("VehicleBooking", "Login"))
 {
-    if (Model != null)
+
+
+    if (ViewBag.L != null)
     {
         <table border="1">
             <tr>
+                <td>Select</td>
                 <td>Manufacturer Name</td>
                 <td>Vehicle Code</td>
                 <td>Branch Location</td>
@@ -18,9 +20,10 @@
                 <td>Colour</td>
                 <td>Seating Capacity</td>
             </tr>
-            @foreach (var v in Model)
+            @foreach (var v in ViewBag.L as IList<Team5Project.Models.VehicleSearch>)
             {
                 <tr>
+                    <td>@Html.CheckBox("chk", new { @value = v.Vehicle_Code })</td>
                     <td>@v.Manufactures_name</td>
                     <td>@v.Vehicle_Code</td>
                     <td>@v.Branch_Location</td>
@@ -30,7 +33,11 @@
                 </tr>
             }
         </table>
-        <input type="submit" value="Confirm" />
+        <input type="submit" value="Book Vehicles" />
     }
+
 }
+
+
+
 

@@ -3,15 +3,32 @@
     ViewBag.Title = "SuccessfulCustomer";
 }
 
-<h2>WELCOME</h2>
+<h2>SuccessfulCustomer</h2>
+<h3>Welcome @Session["username"]</h3>
 
-@using(Html.BeginForm("VehicleSearch","Login"))
+SEARCH VEHICLES HERE!!
+
+@using (Html.BeginForm("SuccessfulCustomer", "Login", FormMethod.Post))
 {
-    <tr>
-        <td><input type="submit" value="VEHICLE SEARCH" /></td>
-    </tr>
 
+    <table>
+        <tr>
+            <td><input type="submit" value="SEARCH" name="Submit" /></td>
+
+
+            <td><input type="submit" value="STATUS" name="Submit" /></td>
+        </tr>
+        <tr>
+            <td>@Html.ActionLink("Homepage", "Login", "Login")</td>
+        </tr>
+    </table>
+
+    if (ViewBag.msg != null)
+    {
+        <h3>@ViewBag.msg</h3>
+    }
 
 
 }
+
 

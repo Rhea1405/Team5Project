@@ -1,24 +1,26 @@
-@model Team5Project.Models.VehicleSearch
+﻿@model Team5Project.Models.VehicleSearch
 @{
     ViewBag.Title = "VehicleSearch";
-    Layout = "~/Views/Shared/_CustomerLayoutPage.cshtml";
 }
 
 <h2>VehicleSearch</h2>
-@using (Html.BeginForm("GetPriceRange", "Login"))
+<h3>Welcome @Session["username"]</h3>
+
+@using (Html.BeginForm("SearchVehicleResults", "Login"))
 {
     <table>
+
         <tr>
             <td>Manufacturer Name</td>
-            <td>@Html.TextBox("Manufactures_name", Request["Manufactures_name"])</td>
+            <td>@Html.DropDownList("ddlmname", new SelectList(ViewBag.m, "Manufactures_name", "Manufactures_name"), "Select")</td>
         </tr>
         <tr>
             <td>Vehicle Code</td>
-            <td>@Html.TextBox("Vehicle_Code", Request["Vehicle_Code"])</td>
+            <td>@Html.DropDownList("ddlvcode", new SelectList(ViewBag.m, "Vehicle_Code", "Vehicle_Code"), "Select")</td>
         </tr>
         <tr>
             <td>Branch Location</td>
-            <td>@Html.TextBox("Branch_Location", Request["Branch_Location"])</td>
+            <td>@Html.DropDownList("ddlbloc", new SelectList(ViewBag.b, "Branch_Location", "Branch_Location"), "Select")</td>
         </tr>
         <tr>
             <td>Price Range</td>
@@ -27,15 +29,33 @@
         </tr>
         <tr>
             <td>Colour</td>
-            <td>@Html.TextBox("Color", Request["Color"])</td>
+            <td>@Html.DropDownList("ddlcolor", new SelectList(ViewBag.m, "Color", "Color"), "Select")</td>
+
         </tr>
         <tr>
             <td>Seating Capacity</td>
-            <td>@Html.TextBox("Seating_Capacity", Request["Seating_Capacity"])</td>
+            <td>@Html.DropDownList("ddlcapacity", new SelectList(ViewBag.m, "Seating_Capacity", "Seating_Capacity"), "Select")</td>
         </tr>
         <tr>
             <td><input type="submit" value="Search" /></td>
         </tr>
+
+        <tr>
+            <td>@Html.ActionLink("Back to CustomerPage", "SuccessfulCustomer", "Login")</td>
+        </tr>
+
+
+
+
     </table>
-    <td><input type="button" value="BACK" onclick="@("window.location.href='" + @Url.Action("Customer", "Login") + "'");" /></td>
+
+
+
+
+
+
+
 }
+
+
+

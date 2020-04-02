@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "CustomerStatus";
+}
+
+<h2>CustomerStatus</h2>
+
+<h3>Welcome @Session["username"]</h3>
+@using (Html.BeginForm())
+{
+    <table border="1">
+        <tr>
+            <td>BOOKING ID</td>
+            <td>VEHICLE_ID</td>
+            <td>BRANCH_LOCATION</td>
+            <td>STATUS</td>
+            <td>CUSTOMER ID</td>
+        </tr>
+        @foreach (var i in ViewBag.L as IList<Team5Project.Models.Customer_Vehicle_Booking1>)
+        {
+
+            <tr>
+                <td>@i.Booking_id</td>
+                <td>@i.Vehicle_id</td>
+                <td>@i.Branch_Location</td>
+                <td>@i.Status</td>
+                <td>@i.Customer_id</td>
+            </tr>
+
+
+        }
+
+
+
+
+    </table>
+
+    <tr>
+        <td>@Html.ActionLink("Back to customer page", "SuccessfulCustomer", "Login")</td>
+    </tr>
+
+
+
+
+
+
+}
+
+
+

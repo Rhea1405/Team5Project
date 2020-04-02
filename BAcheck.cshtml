@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "BAcheck";
+}
+<h3>Welcome @Session["username"]</h3>
+@using (Html.BeginForm())
+{
+
+    <table>
+        <tr>
+            <td>BRANCH ID</td>
+            <td>AS ON DATE</td>
+            <td>VEHICLE ID</td>
+            <td>STATUS</td>
+
+        </tr>
+        @foreach (var i in ViewBag.L as IList<Team5Project.Models.Branch_Vehicle_Request>)
+        {
+            <tr>
+                <td>@i.Branch_id</td>
+                <td>@i.As_On_Date</td>
+                <td>@i.Vehicle_id</td>
+                <td>@i.Status</td>
+
+
+            </tr>
+
+
+
+
+        }
+        <tr>
+            <td>@Html.ActionLink("Homepage", "Login", "Login")</td>
+        </tr>
+
+    </table>
+
+
+
+
+
+}
+
+

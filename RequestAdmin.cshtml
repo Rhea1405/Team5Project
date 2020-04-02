@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewBag.Title = "RequestAdmin";
+}
+
+<h2>RequestAdmin</h2>
+
+<h3>Welcome @Session["username"]</h3>
+@using (Html.BeginForm("AddToRequestTable", "Login"))
+{
+    <table>
+        <tr>
+            <td>MANUFACTURES NAME</td>
+            <td>VEHICLE CODE</td>
+            <td>EX_SHOWROOM PRICE</td>
+            <td>COLOR</td>
+            <td>SEATING CAPACITY</td>
+            <td>STOCK DATE</td>
+            <td>SELECT</td>
+
+        </tr>
+        @foreach (var i in ViewBag.L as IList<Team5Project.Models.Vehicle_details>)
+        {
+
+            <tr>
+                <td>@i.Manufactures_name</td>
+                <td>@i.Vehicle_Code</td>
+                <td>@i.Ex_ShowRoom_Price</td>
+                <td>@i.Color</td>
+                <td>@i.Seating_Capacity</td>
+                <td>@i.Stocks_Lasts_Still</td>
+                <td>@Html.CheckBox("chckreq", new { @value = i.Vehicle_Code })</td>
+
+            </tr>
+
+
+
+        }
+        <tr>
+            <td><input type="submit" value="REQUEST VEHICLES" /></td>
+        </tr>
+
+
+
+    </table>
+
+
+
+
+
+}
+
+

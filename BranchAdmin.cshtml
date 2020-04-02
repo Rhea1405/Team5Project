@@ -1,8 +1,8 @@
 ﻿@model Team5Project.Models.Branch_Admin
 @{
     ViewBag.Title = "BranchAdmin";
-   Layout = "~/Views/Shared/_BranchAdminLayoutPage.cshtml";
-}
+    Layout = "~/Views/Shared/_BranchAdminLayoutPage.cshtml";
+
 }
 
 <h2>BranchAdmin</h2>
@@ -14,7 +14,7 @@
     <table>
         <tr>
             <td>Branch ID</td>
-            <td>@Html.TextBoxFor(a =>a.Branch_id)</td>
+            <td>@Html.TextBoxFor(a => a.Branch_id)</td>
         </tr>
         <tr>
             <td>Branch Location</td>
@@ -34,7 +34,14 @@
             <td>@Html.TextBoxFor(a => a.Phone)</td>
         </tr>
         <tr>
+            <td>Password</td>
+            <td>@Html.TextBoxFor(a => a.Password)</td>
+        </tr>
+        <tr>
             <td><input type="submit" value="Register" /></td>
+        </tr>
+        <tr>
+            <td>@Html.ActionLink("Homepage", "Login", "Login")</td>
         </tr>
     </table>
     if (ViewBag.msg != null)

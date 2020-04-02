@@ -1,21 +1,21 @@
 ﻿@model Team5Project.Models.User_Registration
 @{
     ViewBag.Title = "Login";
-  Layout = "~/Views/Shared/_BranchAdminLayoutPage.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h3>Welcome to Online Vehicle Registration</h3>
 
-@using(Html.BeginForm("AdminLogin","Login"))
+@using (Html.BeginForm("AdminLogin", "Login"))
 {
     <table>
         <tr>
             <td>Username</td>
-            <td>@Html.TextBoxFor(a=>a.Username)</td>
+            <td>@Html.TextBoxFor(a => a.Userid)</td>
         </tr>
         <tr>
             <td>Password</td>
-            <td>@Html.TextBoxFor(a=>a.Password)</td>
+            <td>@Html.TextBoxFor(a => a.Password)</td>
         </tr>
         <tr>
             <td>Already registered user?</td>
@@ -30,5 +30,7 @@
 
 
 }
+
+
 
 

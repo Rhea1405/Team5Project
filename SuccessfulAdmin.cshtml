@@ -1,4 +1,6 @@
 ﻿@model Team5Project.Models.Branch_Admin
+
+
 @{
     ViewBag.Title = "SuccessfulAdmin";
 }
@@ -7,7 +9,7 @@
 
 <h3>Welcome @Session["username"]</h3>
 
-@using (Html.BeginForm("SuccessfulAdminInsert", "Login"))
+@using (Html.BeginForm("SuccessfulAdmin", "Login", FormMethod.Post))
 {
     <table border="1">
         <tr>
@@ -67,13 +69,25 @@
             </tr>
 
         }
+        <tr>
+            <td><input type="submit" value="APPROVE" name="Submit" /></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="REJECT" name="Submit" /></td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="PENDING_REQUESTS" name="Submit"</td>
+        </tr>
 
+        <tr>
+            <td>@Html.ActionLink("Homepage", "Login", "Login")</td>
+        </tr>
 
 
 
 
     </table>
-    <input id="Submit1" type="submit" value="submit" />
+
 
 
 
